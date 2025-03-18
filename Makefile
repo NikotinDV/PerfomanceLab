@@ -12,5 +12,11 @@ task1: task1.out
 task1.out: $(task1p)
 	$(CC) $(CFLAGS) $^ -o task1.out
 
+task2: task2.out
+	./task2.out
+
+task2.out: $(task2p)
+	$(CC) $(CFLAGS) $^ -o task2.out -lm
+
 clean:
 	rm -f *.out
