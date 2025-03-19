@@ -1,12 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int main() {
-  int m, n;
-  printf("Введите число n:");
-  scanf("%d", &n);
-  printf("Введите число m:");
-  scanf("%d", &m);
+int main(int argc, char *argv[]) {
+  if (argc != 3) {
+    printf("Use: %s n m\n", argv[0]);
+    exit(1);
+  }
+  int n = atoi(argv[1]), m = atoi(argv[2]);
   int arr[n], arr2[m];
   for (int i = 0; i < n; i++) {
     arr[i] = i + 1;

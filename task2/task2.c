@@ -16,20 +16,18 @@ void check(int *circle, int *point, int j) {
   }
 }
 
-int main() {
-  char file1[100], file2[100];
+int main(int argc, char *argv[]) {
+  (void)argc;
   int circle[3], point[256];
   int i = 0, j = 0;
-  printf("Введите имя файла с координатами центра окружности и радиусом: ");
-  scanf("%s", file1);
-  FILE *fp1 = fopen(file1, "r");
+  FILE *fp1 = fopen(argv[1], "r");
   if (!fp1) {
     printf("file nf\n");
     exit(1);
   }
   while (fscanf(fp1, "%d", &circle[i]) == 1) {
     if (circle[i] < 10e-38 && circle[i] > 10e38) {
-      printf("Числа вне диапазона\n");
+      printf("Out of range\n");
       exit(1);
     } else {
       i++;
@@ -37,9 +35,7 @@ int main() {
   }
   fclose(fp1);
 
-  printf("Введите имя файла с координатами точек: ");
-  scanf("%s", file2);
-  FILE *fp2 = fopen(file2, "r");
+  FILE *fp2 = fopen(argv[2], "r");
   if (!fp2) {
     printf("file2 nf\n");
     exit(1);
@@ -47,7 +43,7 @@ int main() {
 
   while (fscanf(fp2, "%d", &point[j]) == 1) {
     if (point[j] < 10e-38 && point[j] > 10e38) {
-      printf("Числа вне диапазона\n");
+      printf("Out of range\n");
       exit(1);
     } else {
       j++;
@@ -58,7 +54,7 @@ int main() {
   if (j > 1 && j <= 200) {
     check(circle, point, j);
   } else {
-    printf("Количество точек вне диапазона\n");
+    printf("Points out of range\n");
   }
 
   return 0;
